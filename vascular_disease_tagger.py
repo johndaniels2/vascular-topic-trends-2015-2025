@@ -675,15 +675,15 @@ cerebrovascular_keywords = [
     r'\bhiv-1-associated cns vasculitis\b',
     r'\bhiv-associated vasculitis of the central nervous system\b',
     r'\bvasculitis of the central nervous system, hiv-associated\b',
-    r'\bgiant cell arteritis\b', # Keep here for CNS manifestations, but noted overlap with aortic
-    r'\baortic arteritis, giant cell\b', # Also here for completeness related to GCA
-    r'\baortitis, giant cell\b', # Also here for completeness related to GCA
+    r'\bgiant cell arteritis\b',
+    r'\baortic arteritis, giant cell\b',
+    r'\baortitis, giant cell\b',
     r'\barteritis, giant cell, horton\b',
     r'\barteritis, giant cell, horton\'?s\b',
     r'\barteritis, temporal\b',
     r'\bcranial arteritis\b',
-    r'\bgiant cell aortic arteritis\b', # Also here for completeness related to GCA
-    r'\bgiant cell aortitis\b', # Also here for completeness related to GCA
+    r'\bgiant cell aortic arteritis\b',
+    r'\bgiant cell aortitis\b',
     r'\bgiant cell aortitis, horton\'?s\b',
     r'\bgiant cell arteritis, horton\b',
     r'\bhorton disease\b',
@@ -728,7 +728,7 @@ cerebrovascular_keywords = [
     r'\bvertebral artery reconstruction\b',
     r'\bcoiling\b', # For intracranial aneurysms, too generic?
     r'\bclipping\b', # For intracranial aneurysms, too generic?
-    r'\bthrombolysis\b' # For acute stroke, this okay?
+    r'\bthrombolysis\b' # For acute stroke, is this okay?
 ]
 
 # Peripheral Arterial Disease Keywords
@@ -793,9 +793,9 @@ peripheral_arterial_disease_keywords = [
     r'\blimb revascularization\b',
     r'\blower extremity revascularization\b',
     r'\blimb salvage\b',
-    r'\bthrombolysis\b', # For acute limb ischemia
-    r'\bthrombectomy\b', # For acute limb ischemia
-    r'\bembolectomy\b', # For acute limb ischemia
+    r'\bthrombolysis\b',
+    r'\bthrombectomy\b',
+    r'\bembolectomy\b',
     r'\bdrug-coated balloon\b',
     r'\bdcb\b',
     r'\bcovered stent\b',
@@ -806,7 +806,7 @@ peripheral_arterial_disease_keywords = [
     r'\biliac endarterectomy\b',
     r'\bamputation\b',
     r'\bsympathectomy\b',
-    r'\bwound care\b', # For PAD ulcers
+    r'\bwound care\b',
     
     # Diagnostics often in Peripheral Arterial Disease Procedure Titles
     r'\bperipheral angiography\b',
@@ -1692,6 +1692,8 @@ if __name__ == "__main__":
         print(f"Loading titles from '{input_csv_filename}'...")
         try:
 
+            df = pd.read_csv(input_csv_filename)
+            
             title_column_name = 'Title' # MAKE SURE TITLE COLUMN HAS THIS NAME
 
             if title_column_name not in df.columns:
