@@ -24,7 +24,7 @@ aortic_keywords = [
     r'\bpenetrating atherosclerotic ulcer\b',
     r'\baortic penetrating ulcer\b',
     r'\bpenetrating aortic ulcer\b',
-    r'\bpenetrating ulcer\b', # Is 'penetrating ulcer' alone too general without 'aortic' context?
+    r'\bpenetrating ulcer\b',
     r'\bpenetrating ulcer aorta\b',
     r'\baortic aneurysm\b',
     r'\baortic aneurysm, abdominal\b',
@@ -73,6 +73,37 @@ aortic_keywords = [
     r'\baortitis\b',
     r'\bleriche\'?s syndrome\b',
     r'\baortic valve disease\b',
+    r'\bAneurysm\b',
+    r'\bAneurysm, Infected\b',
+    r'\bAneurysms, Infected\b',
+    r'\bInfected Aneurysms\b',
+    r'\bInfected Aneurysm\b',
+    r'\bAneurysm, Bacterial\b',
+    r'\bAneurysms, Bacterial\b',
+    r'\bBacterial Aneurysm\b',
+    r'\bBacterial Aneurysms\b',
+    r'\bAneurysm, Mycotic\b',
+    r'\bAneurysms, Mycotic\b',
+    r'\bMycotic Aneurysms\b',
+    r'\bMycotic Aneurysm\b',
+    r'\bFungal Aneurysm\b',
+    r'\bAneurysm, Fungal\b',
+    r'\bAneurysms, Fungal\b',
+    r'\bFungal Aneurysms\b',
+    r'\bAneurysm, Ruptured\b',
+    r'\bAneurysms, Ruptured\b',
+    r'\bRuptured Aneurysms\b',
+    r'\bRuptured Aneurysm\b',
+    r'\bAortic Rupture\b',
+    r'\bAortic Ruptures\b',
+    r'\bRupture, Aortic\b',
+    r'\bRuptures, Aortic\b',
+    r'\bAortic Aneurysm, Ruptured\b',
+    r'\bAneurysm, Ruptured Aortic\b',
+    r'\bAneurysms, Ruptured Aortic\b',
+    r'\bAortic Aneurysms, Ruptured\b',
+    r'\bRuptured Aortic Aneurysms\b',
+    r'\bRuptured Aortic Aneurysm\b',
     
     # Aortic Procedures
     r'\baortic valve procedures\b',
@@ -98,8 +129,6 @@ aortic_keywords = [
     r'\btevar\b',
     r'\bevar\b',
     r'\bfevar\b',
-
-    # General procedures in aortic context
     r'\baortocaval fistula repair\b',
     r'\baortoenteric fistula repair\b',
     r'\bceliac artery bypass\b',
@@ -107,7 +136,6 @@ aortic_keywords = [
     r'\brenal artery bypass\b',
     r'\brenal artery endarterectomy\b',
     r'\bstenting to repair aneurysms\b',
-    r'\bvascular stenting\b', # It's generic, but if words related to 'aortic' are present, it is still captured by the overall score
     r'\bopen aortic repair\b',
     r'\bhybrid aortic repair\b',
     r'\bdebranching\b',
@@ -117,7 +145,6 @@ aortic_keywords = [
     r'\baortic replacement\b',
     r'\baortic graft\b',
     r'\baortography\b',
-    r'\bspinal cord ischemia\b' # I know this is a complication of aortic surgery, should I include it?
 ]
 
 # Cerebrovascular Disease Keywords
@@ -716,19 +743,19 @@ cerebrovascular_keywords = [
     r'\bcarotid endarterectomy\b',
     r'\bcerebral angiogram\b',
     r'\bcraniotomy\b',
-    r'\bct scan\b', # I know this is a general diagnostic for CV, but is it too generic?
-    r'\bembolization therapy\b', # I know this is slightly relevant for AVMs/aneurysms, is it okay?
-    r'\bepilepsy surgery\b', # Found this to be related to cerebrovascular malformations, too generic?
-    r'\bmicrovascular surgery\b', # Found this to be very relevant for cerebrovascular bypass, too generic?
-    r'\bstereotactic radiosurgery\b', # Found this to be relevant for AVMs & tumors, too generic?
+    r'\bct scan\b',
+    r'\bembolization therapy\b',
+    r'\bepilepsy surgery\b',
+    r'\bmicrovascular surgery\b',
+    r'\bstereotactic radiosurgery\b',
     r'\bthrombectomy\b',
     r'\btranscarotid artery revascularization\b',
     r'\btcar\b',
-    r'\bvascular stenting\b', # General, but when combined with carotid/cerebral words, captures relevant titles
+    r'\bvascular stenting\b',
     r'\bvertebral artery reconstruction\b',
-    r'\bcoiling\b', # For intracranial aneurysms, too generic?
-    r'\bclipping\b', # For intracranial aneurysms, too generic?
-    r'\bthrombolysis\b' # For acute stroke, is this okay?
+    r'\bcoiling\b',
+    r'\bclipping\b',
+    r'\bthrombolysis\b'
 ]
 
 # Peripheral Arterial Disease Keywords
@@ -742,7 +769,7 @@ peripheral_arterial_disease_keywords = [
     r'\bcli\b',
     r'\bintermittent claudication\b',
     r'\bpad\b',
-    r'\bperipheral vascular disease\b', # Too broad?
+    r'\bperipheral vascular disease\b',
     r'\blower extremity arterial disease\b',
     r'\bleg ischemia\b',
     r'\blimb ischemia\b',
@@ -777,7 +804,7 @@ peripheral_arterial_disease_keywords = [
     r'\baortoiliac occlusive disease\b',
 
     # Peripheral Arterial Disease Procedures
-    r'\bangioplasty\b', # Too generic?
+    r'\bangioplasty\b',
     r'\bstents\b',
     r'\bperipheral artery bypass surgery\b',
     r'\baterectomy\b',
@@ -789,7 +816,7 @@ peripheral_arterial_disease_keywords = [
     r'\bfem-dorsalis pedis bypass\b',
     r'\baortofemoral bypass\b',
     r'\bbypass grafting\b',
-    r'\brevascularization\b', # Too generic?
+    r'\brevascularization\b',
     r'\blimb revascularization\b',
     r'\blower extremity revascularization\b',
     r'\blimb salvage\b',
@@ -801,7 +828,7 @@ peripheral_arterial_disease_keywords = [
     r'\bcovered stent\b',
     r'\bbioabsorbable stent\b',
     r'\bvessel preparation\b',
-    r'\bendarterectomy\b', # May be too generic, but found it can be specified for femoral/iliac
+    r'\bendarterectomy\b',
     r'\bfemoral endarterectomy\b',
     r'\biliac endarterectomy\b',
     r'\bamputation\b',
@@ -861,7 +888,7 @@ dialysis_access_keywords = [
     r'\bfistula salvage\b',
     r'\bgraft salvage\b',
     r'\baccess infection\b',
-    r'\bsteal syndrome\b', # May seem generic but relevant to dialysis access with context clues, which is why I added DAIS below
+    r'\bsteal syndrome\b',
     r'\bdialysis access-induced steal syndrome\b',
     r'\bdais\b',
     r'\baccess aneurysm\b',
@@ -886,7 +913,7 @@ dialysis_access_keywords = [
     r'\bcatheter exchange\b',
     r'\bcentral venous angioplasty\b',
     r'\bcentral venous stenting\b',
-    r'\bvein mapping\b' # For pre-access planning, too generic?
+    r'\bvein mapping\b'
 ]
 
 # Venous and Lymphatic Disease Keywords
@@ -1226,7 +1253,7 @@ venous_lymphatic_keywords = [
     r'\bangiolymphoid hyperplasia with eosinophilia\b',
     r'\bgranuloma, pseudopyogenic\b',
     r'\bpseudopyogenic granuloma\b',
-    r'\bchurg-strauss syndrome\b', # Overlaps with Cerebrovascular Disease, will result in "Uncertain"
+    r'\bchurg-strauss syndrome\b',
     r'\ballergic angiitis\b',
     r'\ballergic angiitis and granulomatosis\b',
     r'\ballergic granulomatosis\b',
@@ -1498,7 +1525,7 @@ venous_lymphatic_keywords = [
     r'\bmarek disease\b',
     r'\bfowl paralysis\b',
     r'\bmarek\'?s disease\b',
-    r'\bsarcoidosis\b', # Overlap with Cerebrovascular Disease, will result in "Uncertain"
+    r'\bsarcoidosis\b',
     r'\bbesnier-boeck disease\b',
     r'\bbesnier-boeck-schaumann syndrome\b',
     r'\bboeck disease\b',
@@ -1526,7 +1553,7 @@ venous_lymphatic_keywords = [
     r'\bwaldenstrom\'?s macroglobulinaemia\b',
     r'\bwaldenstrom\'?s macroglobulinemia\b',
     r'\bmucocutaneous lymph node syndrome\b',
-    r'\bkawasaki disease\b', # Overlaps with Cerebrovascular, will result in "Uncertain"
+    r'\bkawasaki disease\b',
     r'\bkawasaki syndrome\b',
     r'\blymph node syndrome, mucocutaneous\b',
     r'\bpseudolymphoma\b',
@@ -1609,12 +1636,12 @@ venous_lymphatic_keywords = [
     r'\bsclerotherapy\b',
     r'\bcatheter-directed thrombolytic therapy\b',
     r'\banticoagulation\b',
-    r'\bangioplasty\b', # Found it often applies to venous (e.g. venous angioplasty), too generic?
+    r'\bangioplasty\b',
     r'\bendovenous thermal ablation\b',
     r'\bvena cava filter\b',
     r'\bseps\b',
     r'\bsubfascial endoscopic perforator surgery\b',
-    r'\bsurgical bypass\b', # Found it to be relevant for venous bypass for severe venous outflow obstruction, too generic?
+    r'\bsurgical bypass\b',
     r'\blymphaticovenous anastomosis\b',
     r'\blva\b',
     r'\bvascularized lymph node transfer\b',
