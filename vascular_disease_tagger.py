@@ -4,14 +4,21 @@ import os
 # Aortic Disease Keywords
 aortic_keywords = [
     # Diseases/Conditions
+    r'\baorta\b',
+    r'\baortic\b',
     r'\bacute aortic syndrome\b',
     r'\baortic dissection\b',
     r'\bdissection, abdominal aorta\b',
+    r'\babdominal\b',
+    r'\babdominal aorta\b',
+    r'\babdominal aortic\b',
     r'\babdominal aortic dissection\b',
     r'\bdissection, thoracoabdominal aorta\b',
     r'\bthoracoabdominal aortic dissection\b',
     r'\bdissection, thoracic aorta\b',
     r'\baortic arch dissection\b',
+    r'\barch\b',
+    r'\barch aneurysm\b',
     r'\bdescending aorta dissection\b',
     r'\bdescending thoracic aortic dissection\b',
     r'\bdissection, aortic arch\b',
@@ -145,12 +152,18 @@ aortic_keywords = [
     r'\baortic replacement\b',
     r'\baortic graft\b',
     r'\baortography\b',
+    r'\bendoleak\b',
+    r'\bendoleaks\b',
+    r'\bendograft\b',
+    r'\bendografts\b',
 ]
 
 # Cerebrovascular Disease Keywords
 cerebrovascular_keywords = [
     # Diseases/Conditions
     r'\bcerebrovascular diseases\b',
+    r'\bcerebrovascular\b',
+    r'\bcerebral\b',
     r'\bbasal ganglia cerebrovascular disease\b',
     r'\bbasal ganglia vascular disease\b',
     r'\bcerebrovascular disease, basal ganglia\b',
@@ -343,6 +356,7 @@ cerebrovascular_keywords = [
     r'\bsubclavian steal phenomenon\b',
     r'\bsubclavian-carotid artery steal syndrome\b',
     r'\bcarotid artery diseases\b',
+    r'\bcarotid\b',
     r'\barterial diseases, carotid\b',
     r'\barterial diseases, common carotid\b',
     r'\barterial diseases, external carotid\b',
@@ -761,15 +775,21 @@ cerebrovascular_keywords = [
 # Peripheral Arterial Disease Keywords
 peripheral_arterial_disease_keywords = [
     # Diseases/Conditions
+    r'\bperipheral\b',
+    r'\bperipheral artery\b',
+    r'\bperipheral arterial\b',
     r'\bperipheral arterial disease\b',
     r'\bperipheral arterial diseases\b',
     r'\bperipheral artery disease\b',
+    r'\bpad\b',
     r'\bchronic limb-threatening ischemia\b',
+    r'\bclti\b',
     r'\bcritical limb ischemia\b',
     r'\bcli\b',
     r'\bintermittent claudication\b',
     r'\bpad\b',
     r'\bperipheral vascular disease\b',
+    r'\blower extremity\b',
     r'\blower extremity arterial disease\b',
     r'\bleg ischemia\b',
     r'\blimb ischemia\b',
@@ -787,14 +807,22 @@ peripheral_arterial_disease_keywords = [
 
     # Peripheral Arterial Disease Specific Vessel/Location
     r'\biliac artery disease\b',
+    r'\biliac artery\b',
+    r'\biliac arteries\b',
     r'\biliac stenosis\b',
     r'\biliac occlusion\b',
+    r'\bfemoral artery\b',
+    r'\bfemoral arteries\b',
     r'\bfemoral artery disease\b',
     r'\bfemoral stenosis\b',
     r'\bfemoral occlusion\b',
+    r'\bpopliteal artery\b',
+    r'\bpopliteal arteries\b',
     r'\bpopliteal artery disease\b',
     r'\bpopliteal stenosis\b',
     r'\bpopliteal occlusion\b',
+    r'\btibial artery\b',
+    r'\btibial arteries\b',
     r'\btibial artery disease\b',
     r'\btibial stenosis\b',
     r'\btibial occlusion\b',
@@ -818,6 +846,7 @@ peripheral_arterial_disease_keywords = [
     r'\bbypass grafting\b',
     r'\brevascularization\b',
     r'\blimb revascularization\b',
+    r'\blimb preservation\b',
     r'\blower extremity revascularization\b',
     r'\blimb salvage\b',
     r'\bthrombolysis\b',
@@ -847,6 +876,7 @@ dialysis_access_keywords = [
     r'\bhemodiafiltration\b',
     r'\bacetate-free biofiltration\b',
     r'\bbiofiltration, acetate-free\b',
+    r'\bhemodialysis\b',
     r'\bhemodialysis, home\b',
     r'\bhome hemodialysis\b',
     r'\brenal dialysis, home\b',
@@ -863,6 +893,7 @@ dialysis_access_keywords = [
     r'\bsnuffbox fistula\b',
     r'\bbuttonhole technique\b',
     r'\barteriovenous shunt, surgical\b',
+    r'\bdialysis\b',
     r'\bdialysis access\b',
     r'\barteriovenous graft\b',
     r'\bavg\b',
@@ -919,6 +950,7 @@ dialysis_access_keywords = [
 # Venous and Lymphatic Disease Keywords
 venous_lymphatic_keywords = [
     # Venous Disease Terms
+    r'\bvenous\b',
     r'\bvenous insufficiency\b',
     r'\bpostphlebitic syndrome\b',
     r'\bpostphlebitic disease\b',
@@ -1211,6 +1243,7 @@ venous_lymphatic_keywords = [
     r'\blymphocele\b',
     r'\bcyst, lymphatic\b',
     r'\blymphatic cyst\b',
+    r'\blymphatic\b',
     r'\blymphocoele\b',
     r'\blymphoproliferative disorders\b',
     r'\bduncan disease\b',
@@ -1629,6 +1662,8 @@ venous_lymphatic_keywords = [
     r'\bcystic hygroma colli\b',
     r'\bhygroma\b',
     r'\bhygroma, cystic\b',
+    r'\bnutcracker\b',
+    r'\bnutcracker syndrome\b',
 
     # Venous and Lymphatic Disease Procedures
     r'\bambulatory phlebectomy\b',
@@ -1679,19 +1714,28 @@ ALL_KEYWORDS = {
 }
 
 # Categorization Function
-def categorize_title(title):
+def categorize_title(title, debug=False):
     if not isinstance(title, str):
         return 'Other' # Non-string titles
 
     title_lower = title.lower()
-    
     matched_categories = []
 
+    if debug:
+        print(f"Checking title: '{title_lower}'")
+
     for category_name, patterns in ALL_KEYWORDS.items():
+        category_matched = False
         for pattern in patterns:
             if pattern.search(title_lower):
                 matched_categories.append(category_name)
+                if debug:
+                    print(f"  ✓ Matched '{category_name}' with pattern: {pattern.pattern}")
+                category_matched = True
                 break # When it finds a match for this category, move to next category
+        
+        if debug and not category_matched:
+            print(f"  ✗ No match for '{category_name}'")
 
     # Removes duplicates from matched_categories
     matched_categories = list(set(matched_categories))
@@ -1707,8 +1751,8 @@ def categorize_title(title):
 
 # Main Script Execution
 if __name__ == "__main__":
-    input_csv_filename = 'meetingnametitles.csv'  # RENAME TO CSV FILE NAME
-    output_csv_filename = 'categorized_meetingname_titles.csv' # RENAME OUTPUT FILE TO NAME OF MEETING
+    input_csv_filename = 'vamtitles.csv'  # RENAME TO CSV FILE NAME
+    output_csv_filename = 'categorized_vam_titles.csv' # RENAME OUTPUT FILE TO NAME OF MEETING
 
     # To check if the input file exists
     if not os.path.exists(input_csv_filename):
